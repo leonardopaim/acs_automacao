@@ -1,6 +1,6 @@
 import '../Entities/_entities.dart';
 
-class AtualizarOrcamento {
+class AtualizarOrcamentoUseCase {
   bool call(Orcamento orcamento){
     return true;
   }
