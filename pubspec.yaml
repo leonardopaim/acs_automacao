@@ -22,11 +22,22 @@ dependencies:
   sqlite3: 1.5.1
 
 dev_dependencies:
-  flutter_lints: ^1.0.0
+  flutter_lints: 1.0.0
   flutter_test:
     sdk: flutter
+  msix: 3.1.2
 
 flutter:
   uses-material-design: true
   assets:
     - assets/dll/sqlite3.dll
+
+msix_config:
+  display_name: ACS Automação Industrial
+  publisher_display_name: Leonardo H. Paim
+  identity_name: com.leohpaim.acs
+  msix_version: 0.0.0.1
+  debug: true
+
+# flutter build windows
+# flutter pub run msix:create
