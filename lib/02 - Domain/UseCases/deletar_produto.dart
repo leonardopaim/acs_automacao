@@ -5,9 +5,7 @@ class DeletarProdutoUseCase {
 
   DeletarProdutoUseCase(this._produtoRepository);
   
-  bool call(int id){
+  void call(int id){
     _produtoRepository.deletar(id);
-    
-    return true;
   }
 }

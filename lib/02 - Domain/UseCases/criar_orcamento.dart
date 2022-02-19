@@ -6,9 +6,7 @@ class CriarOrcamentoUseCase {
 
   CriarOrcamentoUseCase(this._orcamentoRepository);
   
-  bool call(Orcamento orcamento){
+  void call(Orcamento orcamento){
     _orcamentoRepository.criar(orcamento);
-
-    return true;
   }
 }

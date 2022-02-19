@@ -5,9 +5,7 @@ class DeletarFornecedorUseCase {
 
   DeletarFornecedorUseCase(this._fornecedorRepository);
   
-  bool call(int id){
+  void call(int id){
     _fornecedorRepository.deletar(id);
-    
-    return true;
   }
 }

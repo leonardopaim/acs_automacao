@@ -5,9 +5,7 @@ class DeletarServicoUseCase {
 
   DeletarServicoUseCase(this._servicoRepository);
   
-  bool call(int id){
+  void call(int id){
     _servicoRepository.deletar(id);
-    
-    return true;
   }
 }

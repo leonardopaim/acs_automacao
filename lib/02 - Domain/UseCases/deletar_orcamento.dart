@@ -5,9 +5,7 @@ class DeletarOrcamentoUseCase {
 
   DeletarOrcamentoUseCase(this._orcamentoRepository);
   
-  bool call(int id){
+  void call(int id){
     _orcamentoRepository.deletar(id);
-    
-    return true;
   }
 }

@@ -5,9 +5,7 @@ class DeletarClienteUseCase {
 
   DeletarClienteUseCase(this._clienteRepository);
 
-  bool call(int id){
+  void call(int id){
     _clienteRepository.deletar(id);
-
-    return true;
   }
 }
