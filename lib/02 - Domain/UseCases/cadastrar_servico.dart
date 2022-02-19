@@ -1,5 +1,14 @@
+import '../Entities/_entities.dart';
+import '../Interfaces/_interfaces.dart';
+
 class CadastrarServicoUseCase {
-  int call(){
-    return 0;
+  final ServicoRepository _servicoRepository;
+
+  CadastrarServicoUseCase(this._servicoRepository);
+  
+  int call(Servico servico){
+    final id = _servicoRepository.cadastrar(servico);
+
+    return id;
   }
 }
