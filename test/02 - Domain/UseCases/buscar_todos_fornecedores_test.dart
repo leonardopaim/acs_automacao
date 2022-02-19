@@ -1,11 +1,30 @@
 
+import 'package:acs_automacao/02%20-%20Domain/Entities/_entities.dart';
+import 'package:acs_automacao/02%20-%20Domain/Interfaces/_interfaces.dart';
 import 'package:acs_automacao/02%20-%20Domain/UseCases/_usecases.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../Helpers/Builders/fornecedor_builder.dart';
+import '../../Helpers/Mocks/mocks.dart';
 
 void main() {
+  late FornecedorRepository fornecedorRepository;
+
+  setUp(() {
+    fornecedorRepository = MockFornecedorRepository();
+  });
+  
   test("Deve retornar uma lista de fornecedores corretamente", (){
-    final sut = BuscarTodosFornecedoresUseCase();
+    final fornecedor1 = FornecedorBuilder.init.id(1).build();
+    final fornecedor2 = FornecedorBuilder.init.id(2).build();
+    final fornecedoresBuild = <Fornecedor>[fornecedor1, fornecedor2];
+    when(() => fornecedorRepository.buscarTodos()).thenReturn(fornecedoresBuild);
+    final sut = BuscarTodosFornecedoresUseCase(fornecedorRepository);
+
     final fornecedores = sut();
-    expect(fornecedores.length, 0);
+    
+    expect(fornecedores.length, fornecedoresBuild.length);
+    verify(() => sut()).called(1);
   });
 }

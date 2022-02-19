@@ -1,11 +1,24 @@
-
+import 'package:acs_automacao/02%20-%20Domain/Interfaces/_interfaces.dart';
 import 'package:acs_automacao/02%20-%20Domain/UseCases/_usecases.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+
+import '../../Helpers/Builders/cliente_builder.dart';
+import '../../Helpers/Mocks/mocks.dart';
 
 void main() {
-  test("Deve atualizar o cliente corretamente", (){
-    final sut = AtualizarClienteUseCase();
-    final atualizou = sut();
-    expect(atualizou, true);
+  late ClienteRepository clienteRepository;
+
+  setUp(() {
+    clienteRepository = MockClienteRepository();
+  });
+
+  test("Deve atualizar o cliente corretamente", () {
+    final cliente = ClienteBuilder.init.id(1).build();
+    final sut = AtualizarClienteUseCase(clienteRepository);
+
+    sut(cliente);
+
+    verify(() => sut(cliente)).called(1);
   });
 }
