@@ -6,9 +6,7 @@ class AtualizarOrcamentoUseCase {
 
   AtualizarOrcamentoUseCase(this._orcamentoRepository);
 
-  bool call(Orcamento orcamento){
+  void call(Orcamento orcamento){
     _orcamentoRepository.atualizar(orcamento);
-
-    return true;
   }
 }

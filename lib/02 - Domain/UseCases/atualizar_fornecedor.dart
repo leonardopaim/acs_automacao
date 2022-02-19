@@ -6,9 +6,7 @@ class AtualizarFornecedorUseCase {
 
   AtualizarFornecedorUseCase(this._fornecedorRepository);
 
-  bool call(Fornecedor fornecedor) {
+  void call(Fornecedor fornecedor) {
     _fornecedorRepository.atualizar(fornecedor);
-
-    return true;
   }
 }

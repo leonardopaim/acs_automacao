@@ -6,9 +6,7 @@ class AtualizarServicoUseCase {
 
   AtualizarServicoUseCase(this._servicoRepository);
 
-  bool call(Servico servico) {
+  void call(Servico servico) {
     _servicoRepository.atualizar(servico);
-
-    return true;
   }
 }

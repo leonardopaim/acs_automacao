@@ -6,9 +6,7 @@ class AtualizarProdutoUseCase {
 
   AtualizarProdutoUseCase(this._produtoRepository);
 
-  bool call(Produto produto) {
+  void call(Produto produto) {
     _produtoRepository.atualizar(produto);
-
-    return true;
   }
 }

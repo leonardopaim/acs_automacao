@@ -6,9 +6,7 @@ class AtualizarClienteUseCase {
 
   AtualizarClienteUseCase(this._clienteRepository);
 
-  bool call(Cliente cliente) {
+  void call(Cliente cliente) {
     _clienteRepository.atualizar(cliente);
-
-    return true;
   }
 }
