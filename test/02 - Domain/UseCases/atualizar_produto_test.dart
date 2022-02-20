@@ -21,4 +21,15 @@ void main() {
 
     verify(() => produtoRepository.atualizar(produto)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para atualizar produto no repositório", () {
+    final produto = ProdutoBuilder.init.produtoDefault().build();
+    final sut = AtualizarProdutoUseCase(produtoRepository);
+    when(() => produtoRepository.atualizar(produto)).thenThrow(Exception());
+
+    action() => sut(produto);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(produto)).called(1);
+  });
 }

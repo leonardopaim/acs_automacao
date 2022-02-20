@@ -21,4 +21,15 @@ void main() {
 
     verify(() => fornecedorRepository.atualizar(fornecedor)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para atualizar fornecedor no repositório", () {
+    final fornecedor = FornecedorBuilder.init.fornecedorDefault().build();
+    final sut = AtualizarFornecedorUseCase(fornecedorRepository);
+    when(() => fornecedorRepository.atualizar(fornecedor)).thenThrow(Exception());
+
+    action() => sut(fornecedor);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(fornecedor)).called(1);
+  });
 }
