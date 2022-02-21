@@ -20,4 +20,15 @@ void main() {
 
     verify(() => sut(id)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para deletar o cliente no repositório", (){
+    const id = 1;
+    when(() => clienteRepository.deletar(id)).thenThrow(Exception());
+    final sut = DeletarClienteUseCase(clienteRepository);
+
+    action() =>  sut(id);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(id)).called(1);
+  });
 }

@@ -24,4 +24,15 @@ void main() {
     expect(id, servico.id);
     verify(() => servicoRepository.cadastrar(servico)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para cadastrar serviço no repositório", () {
+    final servico = ServicoBuilder.init.servicoDefault().build();
+    final sut = CadastrarServicoUseCase(servicoRepository);
+    when(() => servicoRepository.cadastrar(servico)).thenThrow(Exception());
+
+    action() => sut(servico);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(servico)).called(1);
+  });
 }

@@ -24,4 +24,15 @@ void main() {
     expect(id, produto.id);
     verify(() => produtoRepository.cadastrar(produto)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para cadastrar produto no repositório", () {
+    final produto = ProdutoBuilder.init.produtoDefault().build();
+    final sut = CadastrarProdutoUseCase(produtoRepository);
+    when(() => produtoRepository.cadastrar(produto)).thenThrow(Exception());
+
+    action() => sut(produto);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(produto)).called(1);
+  });
 }

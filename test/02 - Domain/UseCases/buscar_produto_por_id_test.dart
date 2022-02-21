@@ -25,4 +25,16 @@ void main() {
     expect(produto.id, produtoBuild.id);
     verify(() => produtoRepository.buscarPorId(id)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para buscar o produto por id no repositório", (){
+    final produtoBuild = ProdutoBuilder.init.produtoDefault().build();
+    final id = produtoBuild.id;
+    when(() => produtoRepository.buscarPorId(id)).thenThrow(Exception());
+    final sut = BuscaProdutoPorIdUseCase(produtoRepository);
+
+    action() =>  sut(id);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(id)).called(1);
+  });
 }

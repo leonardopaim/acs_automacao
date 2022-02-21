@@ -24,4 +24,15 @@ void main() {
     expect(id, fornecedorBuild.id);
     verify(() => sut(fornecedorBuild)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para cadastrar fornecedor no repositório", () {
+    final fornecedor = FornecedorBuilder.init.fornecedorDefault().build();
+    final sut = CadastrarFornecedorUseCase(fornecedorRepository);
+    when(() => fornecedorRepository.cadastrar(fornecedor)).thenThrow(Exception());
+
+    action() => sut(fornecedor);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(fornecedor)).called(1);
+  });
 }

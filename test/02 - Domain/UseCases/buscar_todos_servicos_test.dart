@@ -27,4 +27,14 @@ void main() {
     expect(servicos.length, servicosBuild.length);
     verify(() => servicoRepository.buscarTodos()).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para buscar todos os serviços no repositório", (){
+    when(() => servicoRepository.buscarTodos()).thenThrow(Exception());
+    final sut = BuscarTodosServicosUseCase(servicoRepository);
+
+    action() =>  sut();
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut()).called(1);
+  });
 }

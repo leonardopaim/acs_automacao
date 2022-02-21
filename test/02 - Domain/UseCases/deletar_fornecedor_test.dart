@@ -21,4 +21,15 @@ void main() {
 
     verify(() => fornecedorRepository.deletar(id)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para deletar o fornecedor no repositório", (){
+    const id = 1;
+    when(() => fornecedorRepository.deletar(id)).thenThrow(Exception());
+    final sut = DeletarFornecedorUseCase(fornecedorRepository);
+
+    action() =>  sut(id);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(id)).called(1);
+  });
 }

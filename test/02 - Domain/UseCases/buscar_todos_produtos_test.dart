@@ -27,4 +27,14 @@ void main() {
     expect(produtos.length, produtosBuild.length);
     verify(() => produtoRepository.buscarTodos()).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para buscar todos os produtos no repositório", (){
+    when(() => produtoRepository.buscarTodos()).thenThrow(Exception());
+    final sut = BuscarTodosProdutosUseCase(produtoRepository);
+
+    action() =>  sut();
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut()).called(1);
+  });
 }

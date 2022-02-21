@@ -25,4 +25,16 @@ void main() {
     expect(cliente.id, clienteBuild.id);
     verify(() => sut(id)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para buscar o cliente por id no repositório", (){
+    final clienteBuild = ClienteBuilder.init.clienteDefault().build();
+    final id = clienteBuild.id;
+    when(() => clienteRepository.buscarPorId(id)).thenThrow(Exception());
+    final sut = BuscaClientePorIdUseCase(clienteRepository);
+
+    action() =>  sut(id);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(id)).called(1);
+  });
 }

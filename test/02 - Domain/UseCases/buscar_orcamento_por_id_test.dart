@@ -25,4 +25,16 @@ void main() {
     expect(orcamento.id, orcamentoBuild.id);
     verify(() => orcamentoRepository.buscarPorId(id)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para buscar o orçamento por id no repositório", (){
+    final orcamentoBuild = OrcamentoBuilder.init.orcamentoDefault().build();
+    final id = orcamentoBuild.id;
+    when(() => orcamentoRepository.buscarPorId(id)).thenThrow(Exception());
+    final sut = BuscarOrcamentoPorIdUseCase(orcamentoRepository);
+
+    action() =>  sut(id);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(id)).called(1);
+  });
 }

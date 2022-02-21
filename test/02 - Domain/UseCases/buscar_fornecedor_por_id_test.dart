@@ -25,4 +25,16 @@ void main() {
     expect(fornecedor.id, fornecedorBuild.id);
     verify(() => sut(id)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para buscar o fornecedor por id no repositório", (){
+    final fornecedorBuild = FornecedorBuilder.init.fornecedorDefault().build();
+    final id = fornecedorBuild.id;
+    when(() => fornecedorRepository.buscarPorId(id)).thenThrow(Exception());
+    final sut = BuscaFornecedorPorIdUseCase(fornecedorRepository);
+
+    action() =>  sut(id);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(id)).called(1);
+  });
 }

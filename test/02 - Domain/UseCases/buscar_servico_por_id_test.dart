@@ -25,4 +25,16 @@ void main() {
     expect(servico.id, servicoBuild.id);
     verify(() => servicoRepository.buscarPorId(id)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para buscar o serviço por id no repositório", (){
+    final servicoBuild = ServicoBuilder.init.servicoDefault().build();
+    final id = servicoBuild.id;
+    when(() => servicoRepository.buscarPorId(id)).thenThrow(Exception());
+    final sut = BuscaServicoPorIdUseCase(servicoRepository);
+
+    action() =>  sut(id);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(id)).called(1);
+  });
 }

@@ -26,4 +26,14 @@ void main() {
     expect(clientes.length, clientesBuild.length);
     verify(() => sut()).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para buscar todos os clientes no repositório", (){
+    when(() => clienteRepository.buscarTodos()).thenThrow(Exception());
+    final sut = BuscarTodosClientesUseCase(clienteRepository);
+
+    action() =>  sut();
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut()).called(1);
+  });
 }

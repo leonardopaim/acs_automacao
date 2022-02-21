@@ -21,4 +21,15 @@ void main() {
     
     verify(() => servicoRepository.deletar(id)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para deletar o serviço no repositório", (){
+    const id = 1;
+    when(() => servicoRepository.deletar(id)).thenThrow(Exception());
+    final sut = DeletarServicoUseCase(servicoRepository);
+
+    action() =>  sut(id);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(id)).called(1);
+  });
 }

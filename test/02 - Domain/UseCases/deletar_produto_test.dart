@@ -21,4 +21,15 @@ void main() {
     
     verify(() => produtoRepository.deletar(id)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para deletar o produto no repositório", (){
+    const id = 1;
+    when(() => produtoRepository.deletar(id)).thenThrow(Exception());
+    final sut = DeletarProdutoUseCase(produtoRepository);
+
+    action() =>  sut(id);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(id)).called(1);
+  });
 }

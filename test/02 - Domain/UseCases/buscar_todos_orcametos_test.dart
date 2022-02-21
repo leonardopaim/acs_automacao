@@ -27,4 +27,14 @@ void main() {
     expect(orcamentos.length, orcamentosBuild.length);
     verify(() => orcamentoRepository.buscarTodos()).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para buscar todos os orçamentos no repositório", (){
+    when(() => orcamentoRepository.buscarTodos()).thenThrow(Exception());
+    final sut = BuscarTodosOrcamentosUseCase(orcamentoRepository);
+
+    action() =>  sut();
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut()).called(1);
+  });
 }

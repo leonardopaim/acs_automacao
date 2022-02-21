@@ -27,4 +27,14 @@ void main() {
     expect(fornecedores.length, fornecedoresBuild.length);
     verify(() => sut()).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para buscar todos os fornecedores no repositório", (){
+    when(() => fornecedorRepository.buscarTodos()).thenThrow(Exception());
+    final sut = BuscarTodosFornecedoresUseCase(fornecedorRepository);
+
+    action() =>  sut();
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut()).called(1);
+  });
 }

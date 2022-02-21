@@ -22,4 +22,15 @@ void main() {
 
     verify(() => orcamentoRepository.criar(orcamento)).called(1);
   });
+
+  test("Deve lançar uma exceção ao fazer a chamada para criar orçamento no repositório", () {
+    final orcamento = OrcamentoBuilder.init.orcamentoDefault().build();
+    final sut = CriarOrcamentoUseCase(orcamentoRepository);
+    when(() => orcamentoRepository.criar(orcamento)).thenThrow(Exception());
+
+    action() => sut(orcamento);
+
+    expect(action, throwsA(isA<Exception>()));
+    verify(() => sut(orcamento)).called(1);
+  });
 }
