@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors
 
+import 'package:acs_automacao/01%20-%20UI/Components/app_theme.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 
 import '01 - UI/Pages/_pages.dart';
@@ -16,7 +17,7 @@ class App extends StatelessWidget {
     return FluentApp(
       debugShowCheckedModeBanner: false,
       title: titulo,
-      theme: ThemeData(accentColor: Colors.blue),
+      theme: makeTheme(),
       home: HomePage(),
     );
   }
