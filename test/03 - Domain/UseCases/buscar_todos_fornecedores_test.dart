@@ -1,7 +1,7 @@
 
-import 'package:acs_automacao/02%20-%20Domain/Entities/_entities.dart';
-import 'package:acs_automacao/02%20-%20Domain/Interfaces/_interfaces.dart';
-import 'package:acs_automacao/02%20-%20Domain/UseCases/_usecases.dart';
+import 'package:acs_automacao/03%20-%20Domain/Entities/_entities.dart';
+import 'package:acs_automacao/03%20-%20Domain/Interfaces/_interfaces.dart';
+import 'package:acs_automacao/03%20-%20Domain/UseCases/_usecases.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 

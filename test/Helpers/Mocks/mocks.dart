@@ -1,4 +1,4 @@
-import 'package:acs_automacao/02%20-%20Domain/Interfaces/_interfaces.dart';
+import 'package:acs_automacao/03%20-%20Domain/Interfaces/_interfaces.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockClienteRepository extends Mock implements ClienteRepository {}

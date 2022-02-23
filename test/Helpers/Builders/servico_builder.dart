@@ -1,4 +1,4 @@
-import 'package:acs_automacao/02%20-%20Domain/Entities/_entities.dart';
+import 'package:acs_automacao/03%20-%20Domain/Entities/_entities.dart';
 
 class ServicoBuilder {
   final Servico _servico = Servico();
